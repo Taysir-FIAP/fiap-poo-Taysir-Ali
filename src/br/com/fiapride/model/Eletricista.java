@@ -10,9 +10,7 @@ public class Eletricista extends Profissional {
     }
 
     @Override
-    public String calcularOrcamento(int horasTrabalhadas) {
-        double valorBase = horasTrabalhadas * this.getValorHora();
-        double adicionalRisco = 50.0;
-        return "Orçamento Elétrica: R$ " + (valorBase + adicionalRisco) + " (Incluso adicional de periculosidade).";
+    public void exibirEspecialidade() {
+        System.out.println("Especialidade: Sistemas Elétricos e Injeção.");
     }
 }

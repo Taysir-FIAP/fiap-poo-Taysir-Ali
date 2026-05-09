@@ -1,25 +1,28 @@
 package br.com.fiapride.model;
 
-public class Profissional {
-    // 1. Atributos Privados (Restaurados)
+// A classe precisa ser abstract conforme a Aula 8
+public abstract class Profissional {
     private String nome;
-    private String registro;
+    private String registro; // O atributo existe...
     private double valorHora;
 
-    // 2. CONSTRUTOR (Restaurado)
     public Profissional(String nome, String registro, double valorHora) {
         this.nome = nome;
         this.registro = registro;
         this.valorHora = valorHora;
     }
 
-    // 3. GETTERS (Fundamentais para o cálculo funcionar)
+    // O getter que está faltando para a OrdemDeServico não dar erro:
+    public String getRegistro() {
+        return registro;
+    }
+
     public String getNome() { return nome; }
-    public String getRegistro() { return registro; }
     public double getValorHora() { return valorHora; }
 
-    // 4. POLIMORFISMO: O método que as filhas vão sobrescrever
+    public abstract void exibirEspecialidade();
+
     public String calcularOrcamento(int horasTrabalhadas) {
-        return "Orçamento base: R$ " + (horasTrabalhadas * this.getValorHora());
+        return "Orçamento base: R$ " + (horasTrabalhadas * this.valorHora);
     }
 }

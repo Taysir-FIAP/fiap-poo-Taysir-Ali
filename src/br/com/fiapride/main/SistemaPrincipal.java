@@ -1,28 +1,28 @@
 package br.com.fiapride.main;
 
-import br.com.fiapride.model.Profissional;
-import br.com.fiapride.model.Mecanico;
-import br.com.fiapride.model.Eletricista;
-import java.util.ArrayList;
-import java.util.List;
+import br.com.fiapride.model.*;
 
 public class SistemaPrincipal {
     public static void main(String[] args) {
 
-        System.out.println("--- 🛠️ OFICINA FIAPRIDE: SISTEMA DE ORÇAMENTOS ---");
+        System.out.println("--- 🏛️ OFICINA FIAPRIDE: ARQUITETURA ABSTRATA ---");
 
-        // 1. Lista da SUPERCLASSE: Aceita qualquer herdeiro!
-        List<Profissional> equipe = new ArrayList<>();
+        // TESTE 1: O bloqueio do Molde
+        // Se você descomentar a linha abaixo, o código NÃO COMPILA.
+        // Profissional p = new Profissional("Generico", "000", 10.0);
+        // Erro: 'Profissional is abstract; cannot be instantiated'
 
-        equipe.add(new Mecanico("Beto Silva", "MEC-123", 100.0, "Motores V8"));
-        equipe.add(new Eletricista("Ana Luz", "ELE-999", 100.0, true));
+        // TESTE 2: Polimorfismo com Base Abstrata (Isso funciona e é LINDO!)
+        Profissional[] oficina = {
+                new Mecanico("Beto", "M-1", 100.0, "V8"),
+                new Eletricista("Ana", "E-1", 120.0, true)
+        };
 
-        // 2. A MÁGICA: O mesmo comando produz cálculos diferentes
-        for (Profissional p : equipe) {
-            System.out.println("Profissional: " + p.getNome());
-            // Mesmo ambos tendo valor/hora de 100.0, os resultados serão diferentes
-            System.out.println(p.calcularOrcamento(5));
-            System.out.println("------------------------------------------------");
+        for (Profissional p : oficina) {
+            System.out.println("Nome: " + p.getNome());
+            p.exibirEspecialidade(); // Chama o método que a classe foi OBRIGADA a ter
+            System.out.println(p.calcularOrcamento(2));
+            System.out.println("-------------------");
         }
     }
 }

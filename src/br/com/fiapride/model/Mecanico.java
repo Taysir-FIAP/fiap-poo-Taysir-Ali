@@ -10,9 +10,7 @@ public class Mecanico extends Profissional {
     }
 
     @Override
-    public String calcularOrcamento(int horasTrabalhadas) {
-        double valorBase = horasTrabalhadas * this.getValorHora();
-        double taxaOficina = valorBase * 0.10;
-        return "Orçamento Mecânica: R$ " + (valorBase + taxaOficina) + " (Incluso taxa de ferramentas).";
+    public void exibirEspecialidade() {
+        System.out.println("Especialidade: Manutenção Mecânica e Motores.");
     }
 }
