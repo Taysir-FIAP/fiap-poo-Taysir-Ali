@@ -1,27 +1,32 @@
 package br.com.fiapride.main;
 
 import br.com.fiapride.model.Carro;
-import br.com.fiapride.model.Profissional;
+import br.com.fiapride.model.Mecanico;
+import br.com.fiapride.model.Eletricista;
 import br.com.fiapride.model.OrdemDeServico;
 
 public class SistemaPrincipal {
     public static void main(String[] args) {
 
-        System.out.println("--- Oficina FiapRide: Gestão de Ordens ---");
+        System.out.println("--- OFICINA FIAPRIDE: Teste de Herança ---");
 
-        // 1. Criamos os objetos base
-        // Usamos a classe Profissional que já tem construtor obrigatório
-        Profissional prof = new Profissional("Taysir Fauzi", "MEC-2026", 100.0);
-        Carro meuCarro = new Carro("ABC-1234", "Sedan", "Prata");
+        // 1. Instanciando especialistas (Subclasses)
+        Mecanico m1 = new Mecanico("Beto Silva", "MEC-123", 150.0, "Motores V8");
+        Eletricista e1 = new Eletricista("Ana Luz", "ELE-999", 180.0, true);
 
-        // 2. Criamos a Ordem de Serviço associando os objetos
-        OrdemDeServico os = new OrdemDeServico("Revisão Geral de Sistema", prof, meuCarro);
+        Carro carroCliente = new Carro("ABC-1234", "Sedan", "Prata");
 
-        // 3. Exibimos o resumo para validar a comunicação entre as classes
-        os.exibirResumoOS();
+        // 2. A MÁGICA: A OS aceita o Mecânico porque ele É UM Profissional
+        OrdemDeServico os1 = new OrdemDeServico("Revisão de Motor", m1, carroCliente);
 
-        // 4. Teste de Referência: Se mudarmos o valor/hora do profissional...
-        // O sistema deve refletir isso na OS automaticamente.
-        System.out.println("Valor/Hora consultado via OS: R$ " + os.getTecnicoResponsavel().getValorHora());
+        // 3. E também aceita o Eletricista!
+        OrdemDeServico os2 = new OrdemDeServico("Reparo de Alternador", e1, carroCliente);
+
+        System.out.println("\nResumo da OS 1:");
+        os1.exibirResumoOS();
+        System.out.println("Especialidade do técnico: " + m1.getEspecialidadeMotor());
+
+        System.out.println("\nResumo da OS 2:");
+        os2.exibirResumoOS();
     }
 }
