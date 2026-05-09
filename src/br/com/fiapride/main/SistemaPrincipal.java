@@ -1,22 +1,27 @@
 package br.com.fiapride.main;
 
-import br.com.fiapride.model.Profissional;
 import br.com.fiapride.model.Carro;
+import br.com.fiapride.model.Profissional;
+import br.com.fiapride.model.OrdemDeServico;
 
 public class SistemaPrincipal {
-
     public static void main(String[] args) {
 
-        System.out.println("--- Sistema FiapRide: Gestão de Profissionais --- \n");
+        System.out.println("--- Oficina FiapRide: Gestão de Ordens ---");
 
-        // TESTE 1: Nascimento Legalizado
-        Profissional p1 = new Profissional("Taysir Fauzi", "MEC-2026", 85.0);
-        System.out.println("✅ Profissional cadastrado: " + p1.getNome());
+        // 1. Criamos os objetos base
+        // Usamos a classe Profissional que já tem construtor obrigatório
+        Profissional prof = new Profissional("Taysir Fauzi", "MEC-2026", 100.0);
+        Carro meuCarro = new Carro("ABC-1234", "Sedan", "Prata");
 
-        // TESTE 2: Tentativa de Criar "Profissional Fantasma"
-        // Descomente a linha abaixo para ver o erro de compilação:
-        //Profissional p2 = new Profissional();
+        // 2. Criamos a Ordem de Serviço associando os objetos
+        OrdemDeServico os = new OrdemDeServico("Revisão Geral de Sistema", prof, meuCarro);
 
-        // O erro ocorre porque o Java agora EXIGE os 3 parâmetros que definimos no construtor.
+        // 3. Exibimos o resumo para validar a comunicação entre as classes
+        os.exibirResumoOS();
+
+        // 4. Teste de Referência: Se mudarmos o valor/hora do profissional...
+        // O sistema deve refletir isso na OS automaticamente.
+        System.out.println("Valor/Hora consultado via OS: R$ " + os.getTecnicoResponsavel().getValorHora());
     }
 }
