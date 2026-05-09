@@ -2,9 +2,9 @@
 
 ## 📊 Informações do Aluno
 - **Nome:** Taysir Fauzi Ali
-- **RM:** [Seu RM aqui]
-- **Turma:** [Sua Turma aqui]
-- **Curso:** Engenharia de Computação / Análise e Desenvolvimento de Sistemas (FIAP)
+- **RM:** 564884
+- **Turma:** 2CCPX
+- **Curso:** Ciências da Computação (FIAP)
 - **GitHub:** @Taysir-FIAP
 
 ---
