@@ -1,9 +1,9 @@
 package br.com.fiapride.model;
 
-// A classe precisa ser abstract conforme a Aula 8
-public abstract class Profissional {
+// 'implements Documentavel' faz todos os herdeiros serem documentáveis
+public abstract class Profissional implements Documentavel {
     private String nome;
-    private String registro; // O atributo existe...
+    private String registro;
     private double valorHora;
 
     public Profissional(String nome, String registro, double valorHora) {
@@ -12,11 +12,8 @@ public abstract class Profissional {
         this.valorHora = valorHora;
     }
 
-    // O getter que está faltando para a OrdemDeServico não dar erro:
-    public String getRegistro() {
-        return registro;
-    }
-
+    // Getters
+    public String getRegistro() { return registro; }
     public String getNome() { return nome; }
     public double getValorHora() { return valorHora; }
 
@@ -24,5 +21,12 @@ public abstract class Profissional {
 
     public String calcularOrcamento(int horasTrabalhadas) {
         return "Orçamento base: R$ " + (horasTrabalhadas * this.valorHora);
+    }
+
+    // IMPLEMENTAÇÃO DO CONTRATO: Validação padrão para qualquer profissional
+    @Override
+    public boolean validarDocumentacao() {
+        System.out.println("🔍 Validando CPF e Registro Profissional de: " + this.getNome());
+        return true;
     }
 }

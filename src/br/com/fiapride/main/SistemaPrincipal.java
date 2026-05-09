@@ -5,24 +5,24 @@ import br.com.fiapride.model.*;
 public class SistemaPrincipal {
     public static void main(String[] args) {
 
-        System.out.println("--- 🏛️ OFICINA FIAPRIDE: ARQUITETURA ABSTRATA ---");
+        System.out.println("=== 🛡️ OFICINA FIAPRIDE: CONTROLE DE ACESSO ===");
 
-        // TESTE 1: O bloqueio do Molde
-        // Se você descomentar a linha abaixo, o código NÃO COMPILA.
-        // Profissional p = new Profissional("Generico", "000", 10.0);
-        // Erro: 'Profissional is abstract; cannot be instantiated'
+        // 1. Instanciamos classes de hierarquias diferentes
+        Mecanico m1 = new Mecanico("Beto Silva", "M-123", 100.0, "Motores");
+        Carro c1 = new Carro("ABC-1234", "Civic", "Preto");
 
-        // TESTE 2: Polimorfismo com Base Abstrata (Isso funciona e é LINDO!)
-        Profissional[] oficina = {
-                new Mecanico("Beto", "M-1", 100.0, "V8"),
-                new Eletricista("Ana", "E-1", 120.0, true)
-        };
+        // 2. MÁGICA: Ambos podem entrar na mesma lista de Documentavel
+        Documentavel[] itensParaRevisar = { m1, c1 };
 
-        for (Profissional p : oficina) {
-            System.out.println("Nome: " + p.getNome());
-            p.exibirEspecialidade(); // Chama o método que a classe foi OBRIGADA a ter
-            System.out.println(p.calcularOrcamento(2));
-            System.out.println("-------------------");
+        System.out.println("\n--- CHECKLIST DE ENTRADA ---");
+        for (Documentavel item : itensParaRevisar) {
+            // Não importa se é pessoa ou máquina, se é Documentavel, eu chamo o método
+            if (item.validarDocumentacao()) {
+                System.out.println("✅ OK: Entrada liberada no pátio.");
+            } else {
+                System.out.println(Documentavel.ALERTA_SEGURANCA);
+            }
+            System.out.println("----------------------------");
         }
     }
 }
