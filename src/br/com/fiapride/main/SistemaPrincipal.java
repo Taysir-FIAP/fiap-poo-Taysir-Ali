@@ -6,21 +6,27 @@ public class SistemaPrincipal {
 
     public static void main(String[] args) {
 
-        // Instância 1
-        Carro meuCarro = new Carro();
-        meuCarro.placa = "ABC-1234";
-        meuCarro.modelo = "Sedan";
-        meuCarro.cor = "Prata";
+        // Instanciação utilizando o novo Construtor
+        Carro meuCarro = new Carro("ABC-1234", "Sedan", "Prata");
+        Carro carroDoProfessor = new Carro("XYZ-9876", "Hatch", "Preto");
 
-        // Instância 2
-        Carro carroDoProfessor = new Carro();
-        carroDoProfessor.placa = "XYZ-9876";
-        carroDoProfessor.modelo = "Hatch";
-        carroDoProfessor.cor = "Preto";
+        System.out.println("--- Sistema FiapRide: Testes de Comportamento ---");
 
-        // Saída no console
-        System.out.println("--- Teste FiapRide: Objeto Carro ---");
-        System.out.println("Meu carro: " + meuCarro.modelo + " | Cor: " + meuCarro.cor + " | Placa: " + meuCarro.placa);
-        System.out.println("Carro do professor: " + carroDoProfessor.modelo + " | Cor: " + carroDoProfessor.cor + " | Placa: " + carroDoProfessor.placa);
+        System.out.println("\n[Testando o Meu Carro]");
+        // Tentando viajar com o carro desligado (Deve gerar erro)
+        meuCarro.registrarViagem(15.5);
+
+        // Ligando o carro e viajando corretamente
+        meuCarro.ligarMotor();
+        meuCarro.registrarViagem(15.5);
+
+        // Tentando ligar um carro que já está ligado (Deve gerar erro)
+        meuCarro.ligarMotor();
+
+        System.out.println("\n[Testando o Carro do Professor]");
+        carroDoProfessor.ligarMotor();
+        // Tentando registrar uma viagem com distância negativa (Deve gerar erro)
+        carroDoProfessor.registrarViagem(-5.0);
+        carroDoProfessor.registrarViagem(42.8);
     }
 }
