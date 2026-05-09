@@ -2,14 +2,17 @@ package br.com.fiapride.model;
 
 public class Eletricista extends Profissional {
 
-    private boolean possuiCertificacaoNR10;
+    private boolean certificado;
 
-    public Eletricista(String nome, String registro, double valorHora, boolean possuiCertificacaoNR10) {
-        super(nome, registro, valorHora);
-        this.possuiCertificacaoNR10 = possuiCertificacaoNR10;
+    public Eletricista(String nome, String registro, double valorHora, boolean certificado) {
+        super(nome, registro, valorHora); // Envia para o pai
+        this.certificado = certificado;
     }
 
-    public boolean isCertificado() {
-        return possuiCertificacaoNR10;
+    @Override
+    public String calcularOrcamento(int horasTrabalhadas) {
+        double valorBase = horasTrabalhadas * this.getValorHora();
+        double adicionalRisco = 50.0;
+        return "Orçamento Elétrica: R$ " + (valorBase + adicionalRisco) + " (Incluso adicional de periculosidade).";
     }
 }

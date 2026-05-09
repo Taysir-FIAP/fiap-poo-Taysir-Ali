@@ -1,45 +1,25 @@
 package br.com.fiapride.model;
 
 public class Profissional {
-    // Atributos privados (Encapsulamento)
+    // 1. Atributos Privados (Restaurados)
     private String nome;
     private String registro;
     private double valorHora;
 
-    // CONSTRUTOR: Exigindo os 3 parâmetros fundamentais
+    // 2. CONSTRUTOR (Restaurado)
     public Profissional(String nome, String registro, double valorHora) {
-        this.setNome(nome);
-        this.setRegistro(registro);
-        this.setValorHora(valorHora);
+        this.nome = nome;
+        this.registro = registro;
+        this.valorHora = valorHora;
     }
 
-    // Getters
+    // 3. GETTERS (Fundamentais para o cálculo funcionar)
     public String getNome() { return nome; }
     public String getRegistro() { return registro; }
     public double getValorHora() { return valorHora; }
 
-    // Setters Privados com Validações (A Engrenagem interna)
-    private void setNome(String nome) {
-        if (nome != null && !nome.trim().isEmpty()) {
-            this.nome = nome;
-        } else {
-            System.out.println("❌ Erro: Nome do profissional é obrigatório!");
-        }
-    }
-
-    private void setRegistro(String registro) {
-        if (registro != null && !registro.trim().isEmpty()) {
-            this.registro = registro;
-        } else {
-            System.out.println("❌ Erro: Registro profissional inválido!");
-        }
-    }
-
-    private void setValorHora(double valorHora) {
-        if (valorHora > 0) {
-            this.valorHora = valorHora;
-        } else {
-            System.out.println("❌ Erro: Valor/Hora deve ser positivo!");
-        }
+    // 4. POLIMORFISMO: O método que as filhas vão sobrescrever
+    public String calcularOrcamento(int horasTrabalhadas) {
+        return "Orçamento base: R$ " + (horasTrabalhadas * this.getValorHora());
     }
 }
