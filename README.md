@@ -15,3 +15,8 @@ A classe `Carro` representa um veículo dentro do ecossistema da startup. Ela ab
 ### Métodos (Comportamentos)
 * `ligarMotor()`: Altera o estado do motor para ligado. Inclui validação de regra de negócio para impedir a ativação caso o motor já esteja em funcionamento.
 * `registrarViagem(double distanciaKm)`: Incrementa a distância percorrida à quilometragem total do veículo. O processamento é bloqueado por duas validações: o motor deve estar obrigatoriamente ligado e a distância informada deve ser estritamente maior que zero.
+
+## Arquitetura de Profissionais
+Para garantir a extensibilidade do sistema, implementamos a classe `Profissional`.
+* **Construtor Robusto**: Impede a criação de objetos sem nome, registro ou valor/hora, evitando o erro de "objetos fantasma".
+* **Imutabilidade Estratégica**: Atributos críticos são validados no nascimento e protegidos por encapsulamento privado.
